@@ -10,7 +10,7 @@ const {
 
 router.route('/')
     .get(getUsers)
-    .post((req, res, next) => {console.log('test2'); next()} , addUser)
+    .post(addUser)
 
 router.route('/:uid')
     .get(getUser)

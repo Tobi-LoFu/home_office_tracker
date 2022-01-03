@@ -1,11 +1,17 @@
-function getUsers(req, res, next) {
+const User = require('../schema/userSchema')
+
+
+async function getUsers(req, res, next) {
     console.log('GET all Users');
-    res.send('All users: ...')
+    const allUsers = await User.find()
+    res.send({message:'All users ', payload: allUsers})
 }
 
-function addUser(req, res, next) {
+async function addUser(req, res, next) {
    console.log("ADD one more user");
-   res.send('User added') 
+   console.log(req.body);
+   const newUser = await User.create(req.body)
+   res.send({message: 'User added', payload: newUser}) 
 }
 
 function getUser(req, res, next) {
